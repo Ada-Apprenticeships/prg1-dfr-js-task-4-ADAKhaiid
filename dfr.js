@@ -1,11 +1,14 @@
 const fs = require('fs'); 
-
-
+// The neccessary files for this task
+const inputFile = "datatrafficdataset_2000.csv";
+  
 function fileExists(filename) {
-  // returns true or false
+  if (fs.existsSync(filename)) {
+    return true
+  }
+  return false
 }
-
-
+  
 function validNumber(value) { // value can be string or numeric
  // returns a boolean 
 }
@@ -58,7 +61,7 @@ function createSlice(dataframe, colindex, colpattern, exportcols = []) { // data
 }
 
 
-
+console.log(fileExists(inputFile))
 
 
 
