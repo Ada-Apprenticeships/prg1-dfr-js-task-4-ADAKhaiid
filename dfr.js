@@ -1,26 +1,45 @@
 const fs = require('fs'); 
-// The neccessary files for this task
+// The neccessary file for this task
 const inputFile = "datatrafficdataset_2000.csv";
-  
+
 function fileExists(filename) {
+  // If the file exists 
   if (fs.existsSync(filename)) {
     return true
   }
   return false
 }
   
-function validNumber(value) { // value can be string or numeric
- // returns a boolean 
+function validNumber(value) { 
+  
+  return typeof value === "number" // If the value is a number
+  && !isNaN(value) // The Value (if string) can be a number
 }
+
 
 
 function dataDimensions(dataframe) {
-  // returns a list [rows (int), cols (int)]
-}
+   
+  // Checks if the dataframe is valid
+  if (dataframe == null) {
+    return [-1, -1];
+  }
 
+  // Checks for valid rows using a conditional statement 
+  const rows = Array.isArray(dataframe) ? dataframe.length : -1;
+  // Check for valid columns using a conditional statement 
+  // We add "&& dataframe.length > 0" to know the dataset has at least one row
+  // We add "&& Array.isArray(dataframe[0])" to know the array has an array inside it
+  const columns = Array.isArray(dataframe) && dataframe.length > 0 && Array.isArray(dataframe[0]) 
+                  ? dataframe[0].length : -1;
+  // Return the array containing rows and columns             
+  return [rows, columns];
+
+}
 
 function calculateMean(dataset) {
   // returns a float or false
+
   
 }
 
@@ -62,6 +81,7 @@ function createSlice(dataframe, colindex, colpattern, exportcols = []) { // data
 
 
 console.log(fileExists(inputFile))
+
 
 
 
